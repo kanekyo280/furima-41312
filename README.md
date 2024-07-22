@@ -48,14 +48,14 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_many :deliveries
+- has_one :delivery
 
 ## deliveries テーブル
 
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
 | postal_code           | string     | null: false                    |
-| address_prefecture_id | integer    | null: false                    |
+| delivery_area_id      | integer    | null: false                    |
 | address_city          | string     | null: false                    |
 | address_house_number  | string     | null: false                    |
 | address_building_name | string     |                                |
