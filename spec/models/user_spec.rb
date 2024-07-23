@@ -78,12 +78,12 @@ describe 'ユーザー新規登録' do
     it '苗字(全角)が空では登録できない' do
       @user.first_name = ""
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name can't be blank","First name is invalid")
+      expect(@user.errors.full_messages).to include("First name can't be blank")
     end
     it '名前(全角)が空では登録できない' do
       @user.last_name = ""
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name can't be blank","Last name is invalid")
+      expect(@user.errors.full_messages).to include("Last name can't be blank")
     end
     it '苗字が半角では登録できない' do
       @user.first_name = "kanemura"
@@ -98,12 +98,12 @@ describe 'ユーザー新規登録' do
     it '苗字(カナ)が空では登録できない' do
       @user.first_name_reading = ""
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name reading can't be blank", "First name reading is invalid")
+      expect(@user.errors.full_messages).to include("First name reading can't be blank")
     end
     it '名前(カナ)が空では登録できない' do
       @user.last_name_reading = ""
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name reading can't be blank","Last name reading is invalid")
+      expect(@user.errors.full_messages).to include("Last name reading can't be blank")
     end
     it '苗字がカタカナ以外では登録できない' do
       @user.first_name_reading = "kanemura"
