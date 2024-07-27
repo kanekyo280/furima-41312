@@ -28,28 +28,28 @@ describe '出品情報登録' do
       @item.valid?
       expect(@item.errors.full_messages).to include("Description can't be blank")
     end
-    it 'categoryが空では登録できない' do
-      @item.category_id = ""
+    it 'categoryが選択肢「---」では登録できない' do
+      @item.category_id = "1"
       @item.valid?
       expect(@item.errors.full_messages).to include("Category can't be blank")
     end
-    it 'product_statusが空では登録できない' do
-      @item.product_status_id = ""
+    it 'product_statusが選択肢「---」では登録できない' do
+      @item.product_status_id = "1"
       @item.valid?
       expect(@item.errors.full_messages).to include("Product status can't be blank")
     end
-    it 'postage_payerが空では登録できない' do
-      @item.postage_payer_id = ""
+    it 'postage_payerが選択肢「---」では登録できない' do
+      @item.postage_payer_id = "1"
       @item.valid?
       expect(@item.errors.full_messages).to include("Postage payer can't be blank")
     end
-    it 'delivery_areaが空では登録できない'  do
-      @item.delivery_area_id = ""
+    it 'delivery_areaが選択肢「---」では登録できない'  do
+      @item.delivery_area_id = "1"
       @item.valid?
       expect(@item.errors.full_messages).to include("Delivery area can't be blank")
     end
-    it 'delivery_dayが空では登録できない' do
-      @item.delivery_day_id = ""
+    it 'delivery_dayが選択肢「---」では登録できない' do
+      @item.delivery_day_id = "1"
       @item.valid?
       expect(@item.errors.full_messages).to include("Delivery day can't be blank")
     end
@@ -62,6 +62,16 @@ describe '出品情報登録' do
       @item.price = "３４５２４５"
       @item.valid?
       expect(@item.errors.full_messages).to include("Price is not a number")
+    end
+    it 'priceが299以下の場合は保存できない' do
+      @item.price = "299"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+    end
+    it 'priceが10,000,000以上の場合は保存できない' do
+      @item.price = "10000000"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
     end
     it 'ユーザーが紐付いていなければ投稿できない' do
       @item.user = nil

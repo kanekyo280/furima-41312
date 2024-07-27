@@ -22,7 +22,7 @@ with_options presence: true do
     validates :delivery_day_id
   end
 
-    validates :price, format: { with: /\A\d+\z/}, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    validates :price,  numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 end
 
 end
