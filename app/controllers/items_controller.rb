@@ -18,6 +18,10 @@ end
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+  end
+
   private
   def item_params
     params.require(:item).permit(:product_name, :description, :category_id, :product_status_id, :postage_payer_id, :delivery_area_id, :delivery_day_id, :price, :image).merge(user_id: current_user.id)
