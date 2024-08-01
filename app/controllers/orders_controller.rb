@@ -1,8 +1,12 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index]
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @saleslog_delivery =SaleslogDelivery.new
+    if @item.saleslog.present? || @item.user_id == current_user.id
+      redirect_to root_path
+    end
   end
 
 def create
@@ -10,9 +14,9 @@ def create
   if @saleslog_delivery.valid?
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      amount: @item.price,  # 商品の値段※個々の記述を質問で聞く
-      card: delivery_params[:token],    # カードトークン
-      currency: 'jpy'                 # 通貨の種類（日本円）
+      amount: @item.price,
+      card: delivery_params[:token],
+      currency: 'jpy'
     )
     @saleslog_delivery.save
     redirect_to root_path
