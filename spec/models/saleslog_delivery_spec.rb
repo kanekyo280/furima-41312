@@ -63,6 +63,11 @@ describe '購入登録' do
       @log.valid?
       expect(@log.errors.full_messages).to include("Phone number must be a number with 10 to 11 digits")
     end
+    it 'phone_numberが数字以外では登録できない' do
+      @log.phone_number = "hfueeivjmv"
+      @log.valid?
+      expect(@log.errors.full_messages).to include("Phone number must be a number with 10 to 11 digits")
+    end
   end
 end
 end
