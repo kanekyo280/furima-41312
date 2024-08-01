@@ -68,6 +68,16 @@ describe '購入登録' do
       @log.valid?
       expect(@log.errors.full_messages).to include("Phone number must be a number with 10 to 11 digits")
     end
+    it 'userが紐付いていなければ投稿できない' do
+      @log.user_id = nil
+      @log.valid?
+      expect(@log.errors.full_messages).to include("User can't be blank")
+    end
+    it 'itemが紐付いていなければ投稿できない' do
+      @log.item_id = nil
+      @log.valid?
+      expect(@log.errors.full_messages).to include("Item can't be blank")
+    end
   end
 end
 end
