@@ -126,8 +126,9 @@
     <div class="subtitle" >
       新規投稿商品
     </div>
-  <% if @item.exists? %>
+
     <ul class='item-lists'>
+    <% if @item.exists? %>
       <% @item.each do |item| %>
       <li class='list'>
         <%= link_to  item_path(item) do %>
@@ -175,8 +176,8 @@
         </div>
         <% end %>
       </li>
+      <% end %>
     </ul>
-  <% end %>
   </div>
   <%# /商品一覧 %>
 </div>
