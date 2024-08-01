@@ -24,6 +24,9 @@ end
   end
 
 def edit
+  if @item.saleslog.present?
+    redirect_to root_path
+  end
   unless current_user == @item.user
     redirect_to root_path
   end
