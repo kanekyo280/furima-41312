@@ -8,6 +8,7 @@ class SaleslogDelivery
   validates :address_house_number
   validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'must be a number with 10 to 11 digits' }
   validates :user_id
+  validates :item_id
   validates :token
 
   with_options numericality: { other_than: 1 , message: "can't be blank"} do

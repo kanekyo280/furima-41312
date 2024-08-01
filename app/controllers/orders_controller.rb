@@ -32,6 +32,6 @@ end
   end
 
   def delivery_params
-    params.require(:saleslog_delivery).permit(:postal_code, :delivery_area_id, :address_city, :address_house_number, :address_building_name, :phone_number, :item_id).merge(user_id: current_user.id, token: params[:token],  item_id: params[:item_id])
+    params.require(:saleslog_delivery).permit(:postal_code, :delivery_area_id, :address_city, :address_house_number, :address_building_name, :phone_number).merge(user_id: current_user.id, token: params[:token],  item_id: params[:item_id])
   end
 end
