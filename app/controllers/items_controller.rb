@@ -24,10 +24,7 @@ end
   end
 
 def edit
-  if @item.saleslog.present?
-    redirect_to root_path
-  end
-  unless current_user == @item.user
+  if @item.saleslog.present? ||  current_user.id != @item.user_id
     redirect_to root_path
   end
 end
